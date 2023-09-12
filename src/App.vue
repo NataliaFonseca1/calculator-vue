@@ -2,9 +2,9 @@
 import { reactive,transformVNodeArgs } from 'vue';
 
 const estado= reactive({
-primeiroNumero:0,
-segundoNumero:0,
-resultado:0,
+primeiroNumero:'',
+segundoNumero:'',
+resultado:'',
 operacao:" ",
 })
 
@@ -14,7 +14,7 @@ switch(estado.operacao){
 case 'somar':
 estado.resultado = estado.primeiroNumero + estado.segundoNumero;
 break
-case 'subtrarir':
+case 'subtrair':
 estado.resultado = estado.primeiroNumero - estado.segundoNumero;
 break
 case 'multiplicar':
@@ -39,14 +39,16 @@ estado.resultado=0;
     <input v-model="estado.primeiroNumero"  type="number" class="p-1 m-2 fs-7" placeholder="Insira o primeiro número">
     <input v-model="estado.segundoNumero" type="number" class="p-1 m-2 fs-7" placeholder="Insira o primeiro número">
     <div>
-    <select v-model="estado.operacao" @change="realizarOperacao" class=" bg-gradien  mt-2 p-7" >
+    <select v-model="estado.operacao" @click="realizarOperacao" class=" bg-gradien  mt-2 p-7" >
     <option  value="somar">somar</option>
-    <option  value="subtrair">Subtratir</option>
+    <option  value="subtrair">Subtrair</option>
     <option  value="multiplicar">Multiplicar</option>
     <option  value="dividir">Dividir</option>
-</select>
+    </select>
+    
 </div>
 </form>
+
 <h1 class="text-center m-2">{{estado.resultado}}</h1>
 </div>
 </template>
