@@ -40,7 +40,7 @@ estado.resultado=0;
     <input v-model="estado.segundoNumero" type="number" class="p-1 m-2 fs-7" placeholder="Insira o primeiro número">
     <div>
       <h2>Escolha a operação a ser realizada:</h2>
-    <select v-model="estado.operacao" @click="realizarOperacao" class=" bg-gradien  mt-2 p-7" >
+    <select v-model="estado.operacao" @change="realizarOperacao" class=" bg-gradien  mt-2 p-7" >
     <option  value="somar">somar</option>
     <option  value="subtrair">Subtrair</option>
     <option  value="multiplicar">Multiplicar</option>
