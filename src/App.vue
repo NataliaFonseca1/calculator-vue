@@ -1,23 +1,20 @@
 <script setup>
-  import { reactive } from 'vue';
-  import Cabecalho from './components/Cabecalho.vue'
-  import Formulario from './components/Formulario.vue'
-  import Resultado from './components/Resultado.vue'
+import { reactive,transformVNodeArgs } from 'vue';
 
 const estado= reactive({
-primeiroNumero:" ",
-segundoNumero:" ",
-resultado:" ",
-
+primeiroNumero:0,
+segundoNumero:0,
+resultado:0,
+operacao:" ",
 })
 
 
 function realizarOperacao(operacao){
-switch(operacao){
+switch(estado.operacao){
 case 'somar':
 estado.resultado = estado.primeiroNumero + estado.segundoNumero;
 break
-case 'subtrair':
+case 'subtrarir':
 estado.resultado = estado.primeiroNumero - estado.segundoNumero;
 break
 case 'multiplicar':
@@ -35,11 +32,25 @@ estado.resultado=0;
 <template>
 
 <div class="container-md bg-info-subtle"  > 
-  <Cabecalho/>
-<Formulario @realizar-operacao="realizarOperacao" :primeiro-numero="estado.primeiroNumero" :segundo-numero="estado.segundoNumero"/>
-<Resultado :resultado="estado.resultado"/>
+  <header class="mt-2 mb-2 text-center">
+  <h1>Calculadora Aritimética</h1>
+</header>
+  <form class="form-control text-center mt-3 pt-2">
+    <input v-model="estado.primeiroNumero"  type="number" class="p-1 m-2 fs-7" placeholder="Insira o primeiro número">
+    <input v-model="estado.segundoNumero" type="number" class="p-1 m-2 fs-7" placeholder="Insira o primeiro número">
+    <div>
+    <select v-model="estado.operacao" @change="realizarOperacao" class=" bg-gradien  mt-2 p-7" >
+    <option  value="somar">somar</option>
+    <option  value="subtrair">Subtratir</option>
+    <option  value="multiplicar">Multiplicar</option>
+    <option  value="dividir">Dividir</option>
+</select>
+</div>
+</form>
+<h1 class="text-center m-2">{{estado.resultado}}</h1>
 </div>
 </template>
+
 
 
 <style scoped>
